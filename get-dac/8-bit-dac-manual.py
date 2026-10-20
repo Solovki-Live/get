@@ -2,8 +2,7 @@ import RPi.GPIO as g
 g.setmode(g.BCM)
 leds = [16, 20, 21, 25, 26, 17, 27, 22]
 g.setup(leds, g.OUT)
-dynamic_range = 3.3
-
+dynamic_range = 1.842
 def voltage_to_number(voltage):
     if not (0.0 <= voltage <= dynamic_range):
         print(f"Динамическое напряжение выходит за динамический диапозон ЦАП (0.00 - {dynamic_range:.2f} В)")
