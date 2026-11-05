@@ -10,21 +10,25 @@ g.setup(up, g.IN)
 g.setup(down, g.IN)
 num = 0
 sleep_time = 0.2
+
 def dec2bin(value):
     return [int(element) for element in bin(value)[2:].zfill(8)]
 while True:
+    proverka = False
     if g.input(up):
-        num = num + 1
-        print(num, dec2bin(num))
-        time.sleep(sleep_time)
+        if num < 255:
+            
+            num = num + 1
+            proverka = True
+            time.sleep(sleep_time)
     if g.input(down):
-        num = num - 1
+        if num > 0:
+           proverka = True
+           num = num - 1
+           time.sleep(sleep_time)
+    
+    if proverka:
         print(num, dec2bin(num))
-        time.sleep(sleep_time)
-    if num < 0:
-        num = 0
-    if num > 255:
-        num = 255
-    g.output(leds, dec2bin(num))
+        g.output(leds, dec2bin(num))
 
     
